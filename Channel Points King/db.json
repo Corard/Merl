@@ -1,0 +1,26 @@
+{
+    "User1": [
+        {
+            "start_timestamp": "2022-07-10T00:00:00.000Z",
+            "end_timestamp": "2022-07-15T00:00:00.000Z",
+            "taken_from": "User2"
+        },
+        {
+            "start_timestamp": "2022-07-20T00:00:00.000Z",
+            "end_timestamp": "2022-07-25T00:00:00.000Z",
+            "taken_from": "User2"
+        }
+    ],
+    "User2": [
+        {
+            "start_timestamp": "2022-07-15T00:00:00.000Z",
+            "end_timestamp": "2022-07-20T00:00:00.000Z",
+            "taken_from": "User1"
+        },
+        {
+            "start_timestamp": "2022-07-25T00:00:00.000Z",
+            "end_timestamp": "2022-07-30T00:00:00.000Z",
+            "taken_from": "User1"
+        }
+    ]
+}
