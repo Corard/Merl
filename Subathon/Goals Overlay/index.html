@@ -1,6 +1,16 @@
-<link href="https://fonts.googleapis.com/css?family={{fontName}}:400,{{fontWeight}}" rel="stylesheet">
+<script defer src="https://reboot0.de/hosted/js/se-tools.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
-<div id="current"></div>
-<div id="next"></div>
-<div id="countdown"></div>
+
+<div id="main">  
+  <div id="text">
+    <span id="command">Type !<span id="bitathon">bitathon</span> in the chat</span><br/>
+    <span id="countdown-label">Time left: </span><span id="countdown">24:00:01</span><br/>
+    <span id="current-label">Completed Goal: </span><span id="current"></span><br/>
+    <span id="next-label">Next Goal: </span><span id="next"></span><br/>
+    <div class="meter">
+      <span id="bar" style="width: 0%"></span>
+    </div>
+    <span id="progress"></span>
+  </div>
+</div>

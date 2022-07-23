@@ -3,8 +3,8 @@ let fieldData;
 let goals;
 let goalID = 0;
 let totalBits = 0;
-let tmpGoal;
-const goalsField = "goalsField";
+let prevCount;
+const goalsField = "goalsField1";
 
 // Countdown Variables
 let minTimer = new Date();
@@ -17,10 +17,11 @@ function onWidgetLoad(obj)
   console.clear()
   console.log(`Widget Load:\n${JSON.stringify(obj)}\n`);
   // Goal Initialisation
-  goals = fieldData.goalsField;
+  goals = fieldData.goalsField1;
   console.log(`Goals:\n${JSON.stringify(goals)}\n`);
   renderOverlay();
-  resetCountdown();
+  countdown(0);
+  updateBar(totalBits);
 }
 
 function onSessionUpdate(obj)
@@ -45,8 +46,9 @@ function onWidgetButton(data)
 	totalBits = 0;
     renderOverlay();
     resetCountdown();
-  } else if (data.field === "checkProgress") {
-    checkProgress();
+    updateBar(totalBits);
+  } else if (data.field === "resetTimer") {
+    resetCountdown();
   }
 }
 
@@ -57,15 +59,10 @@ function onKVStoreUpdate(data)
 
 function checkProgress()
 {
-  if (goals[goalID].goal == undefined) {
-    tmpGoal = 999;
-  } else {
-    tmpGoal = goals[goalID].goal;
-  }
-  if (totalBits < tmpGoal) {
+  if (totalBits < goals[goalID].goal) {
     renderOverlay();
-  } else if (totalBits >= tmpGoal) {
-    while (totalBits >= tmpGoal) {
+  } else if (totalBits >= goals[goalID].goal) {
+    while (totalBits >= goals[goalID].goal) {
       console.log(`Goal Hit: ${goals[goalID].description}`)
       if (goals[goalID].description === "Add an Extra 6 Hours") {
         countdown(21600) // +6 Hours
@@ -74,20 +71,35 @@ function checkProgress()
       renderOverlay();
     }
   }
-  console.log(`Ran Check Progress!\n  Total Bits: ${totalBits}\n  Goal Amount: ${tmpGoal}\n  Goal Description: ${goals[goalID].description}`);
+  console.log(`Ran Check Progress!\n  Total Bits: ${totalBits}\n  Goal Amount: ${goals[goalID].goal}\n  Goal Description: ${goals[goalID].description}`);
 }
 
 function renderOverlay()
 {
-  console.log(`Goal: ${goals[goalID].goal}`);
-  if (goals[goalID].goal == undefined) {
-    tmpGoal = 1000;
+  if (totalBits < 1) {
+    console.log("Less than 1")
+    document.getElementById("current").innerHTML = goals[goalID].description; // goals[goalID].description
+    document.getElementById("next").innerHTML = goals[goalID+1].description; // goals[goalID+1].description
+    document.getElementById("progress").innerHTML = `${totalBits}/1000 bits`; // ${totalBits}/${goals[goalID].goal}
+    updateBar(totalBits);
   } else {
-    tmpGoal = goals[goalID].goal;
+    console.log("More than 1")
+  	document.getElementById("current").innerHTML = goals[goalID-1].description; // goals[goalID].description
+  	document.getElementById("next").innerHTML = goals[goalID].description; // goals[goalID+1].description
+  	document.getElementById("progress").innerHTML = `${totalBits}/${goals[goalID].goal} bits`; // ${totalBits}/${goals[goalID].goal}
+    updateBar(totalBits);
   }
-  document.getElementById("current").innerHTML = goals[goalID].description; // goals[goalID].description
-  document.getElementById("next").innerHTML = goals[goalID+1].description; // goals[goalID+1].description
-  document.getElementById("progress").innerHTML = `${totalBits}/${tmpGoal}`; // ${totalBits}/${goals[goalID].goal}
+}
+
+function updateBar(count)
+{
+  if (count == 0) {
+    $("#bar").css('width', "0%");
+  }
+  prevCount = count;
+  $("body").fadeTo("slow", 1);
+  let percentage = Math.min(100, (count / goals[goalID].goal * 100).toPrecision(3));
+  $("#bar").css('width', percentage + "%");
 }
 
 function resetCountdown()
