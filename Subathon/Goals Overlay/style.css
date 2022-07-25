@@ -50,19 +50,20 @@ html, body
 
 #next-label
 {
-  color: #fc6262;
+  color: #49ff73;
   font-size: 30px;
 }
 
 #current-label
 {
-  color: #49ff73;
+  color: #fc6262;
   font-size: 30px;
 }
 
 .meter {
   display:block;
-  height: 25px;  /* Can be anything */
+  height: 15px;  /* Can be anything */
+  width: 350px;
   position: relative;
   background: {{backgroundColor}};
   -moz-border-radius: 25px;
