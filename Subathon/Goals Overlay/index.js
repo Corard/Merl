@@ -1,9 +1,10 @@
 // Goal Variables
 let fieldData;
-let goals;
+let goals = [];
 let goalID = 0;
 let totalBits = 0;
 let prevCount;
+let audio;
 const goalsField = "goalsField1";
 
 // Countdown Variables
@@ -18,6 +19,7 @@ function onWidgetLoad(obj)
   console.log(`Widget Load:\n${JSON.stringify(obj)}\n`);
   // Goal Initialisation
   goals = fieldData.goalsField1;
+  audio = new Audio(fieldData.sound);
   console.log(`Goals:\n${JSON.stringify(goals)}\n`);
   renderOverlay();
   countdown(0);
@@ -59,14 +61,19 @@ function onKVStoreUpdate(data)
 
 function checkProgress()
 {
-  if (totalBits < goals[goalID].goal) {
+  if (totalBits >= 500000) {
+    renderOverlay();
+  } else if (totalBits < goals[goalID].goal) {
     renderOverlay();
   } else if (totalBits >= goals[goalID].goal) {
     while (totalBits >= goals[goalID].goal) {
       console.log(`Goal Hit: ${goals[goalID].description}`)
       if (goals[goalID].description === "Add an Extra 6 Hours") {
         countdown(21600) // +6 Hours
+      } else if (goals[goalID].goal === 500000) {
+        renderOverlay();
       }
+      audio.play();
       goalID++;
       renderOverlay();
     }
@@ -76,14 +83,21 @@ function checkProgress()
 
 function renderOverlay()
 {
-  if (totalBits < 1) {
-    console.log("Less than 1")
+  if (goals[goalID].goal === 500000) {
+    console.log("Last Reward");
+    document.getElementById("current").innerHTML = goals[goalID].description; // goals[goalID].description
+    document.getElementById("next").innerHTML = "No More Goals!"; // goals[goalID+1].description
+    document.getElementById("progress").innerHTML = `${totalBits}/500000 bits`; // ${totalBits}/${goals[goalID].goal}
+    updateBar(totalBits);
+    return;
+  } else if (totalBits < 1) {
+    console.log("Less than 1");
     document.getElementById("current").innerHTML = goals[goalID].description; // goals[goalID].description
     document.getElementById("next").innerHTML = goals[goalID+1].description; // goals[goalID+1].description
     document.getElementById("progress").innerHTML = `${totalBits}/1000 bits`; // ${totalBits}/${goals[goalID].goal}
     updateBar(totalBits);
   } else {
-    console.log("More than 1")
+    console.log("More than 1");
   	document.getElementById("current").innerHTML = goals[goalID-1].description; // goals[goalID].description
   	document.getElementById("next").innerHTML = goals[goalID].description; // goals[goalID+1].description
   	document.getElementById("progress").innerHTML = `${totalBits}/${goals[goalID].goal} bits`; // ${totalBits}/${goals[goalID].goal}
