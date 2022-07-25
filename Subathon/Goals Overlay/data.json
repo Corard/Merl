@@ -9,6 +9,10 @@
     "label": "Reset Timer",
     "value": "resetTimer"
   },
+  "sound": {
+    "type": "sound-input",
+    "label": "Goal Hit Sound"
+  },
   "minTimer": {
     "type": "number",
     "label": "Initial Duration (minutes)",
@@ -25,7 +29,7 @@
     "type": "text",
     "label": "Message on complete",
     "value": "Done!",
-    "group": "Timer settings"
+    "group": "Timer Settings"
   },
   "textAlign": {
     "label": "Text align",
@@ -100,11 +104,112 @@
     "value": "rgb(85, 33, 195)",
     "group": "Bar Settings"
   },
-  "goalsField": {
+  "goalsField1": {
     "type": "hidden",
     "value": [
       {
+        "goal": 0,
         "description": "No Goal Hit Yet!"
+      },
+      {
+        "goal": 1000,
+        "description": "Down a Beer"
+      },
+      {
+        "goal": 5000,
+        "description": "Drunk Glasses for 30 Minutes"
+      },
+      {
+        "goal": 10000,
+        "description": "Tortilla Slap Challenge with Girlfriend"
+      },
+      {
+        "goal": 15000,
+        "description": "Viewers decide Tweet, PFP & Banner"
+      },
+      {
+        "goal": 20000,
+        "description": "2x HyperX Bundles from LDNUTD"
+      },
+      {
+        "goal": 25000,
+        "description": "Get Jumpscared = Eat Spicy Gummy Challenge"
+      },
+      {
+        "goal": 40000,
+        "description": "100 Nuggets in 1 Hour or Ice Bucket on Head"
+      },
+      {
+        "goal": 65000,
+        "description": "If I laugh, I gift Subs for 20 Minutes"
+      },
+      {
+        "goal": 80000,
+        "description": "Create a !Moment & Expose Baby Pictures"
+      },
+      {
+        "goal": 100000,
+        "description": "Add an Extra 6 Hours"
+      },
+      {
+        "goal": 115000,
+        "description": "Wax Bottom Half of Both Legs"
+      },
+      {
+        "goal": 130000,
+        "description": "Viewers style Makeover from Girlfriend"
+      },
+      {
+        "goal": 145000,
+        "description": "Add an Extra 6 Hours"
+      },
+      {
+        "goal": 160000,
+        "description": "Jump into Ocean LIVE + Beach Stream IRL"
+      },
+      {
+        "goal": 175000,
+        "description": "Razer KB Giveaway & 50% OFF Channel Points"
+      },
+      {
+        "goal": 200000,
+        "description": "Add an Extra 6 Hours"
+      },
+      {
+        "goal": 215000,
+        "description": "Girlfriend Waxes my Armpit Hair"
+      },
+      {
+        "goal": 230000,
+        "description": "Release 2nd Merl Clothing Merch ever"
+      },
+      {
+        "goal": 245000,
+        "description": "Add an Extra 6 Hours"
+      },
+      {
+        "goal": 260000,
+        "description": "Period Simulator with Girlfriend"
+      },
+      {
+        "goal": 275000,
+        "description": "MAVIX M4 Chair Giveaway"
+      },
+      {
+        "goal": 300000,
+        "description": "World's Spiciest One Chip Challenge"
+      },
+      {
+        "goal": 350000,
+        "description": "Buy a VR for Streams"
+      },
+      {
+        "goal": 400000,
+        "description": "First Matching Tattoo with Girlfriend*"
+      },
+      {
+        "goal": 500000,
+        "description": "Quit Twitch for 1 Whole Week..."
       }
     ],
     "group": "Goals"
